@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('tareas/{nombre?}', function ($nombre = "Usuario"){
+// Route::get('tareas',function (){
+    $nombre = strtoupper($nombre);
+    // return view('tareas/tareasIndex'); Otra manera de entrar en directorios
+    // return view('tareas.tareasIndex');
+    return view('tareas.tareasIndex')->with(['nombre' => $nombre]);
+
+});
