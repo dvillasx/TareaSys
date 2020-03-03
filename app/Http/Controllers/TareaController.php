@@ -39,6 +39,14 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre_tarea' => 'required|max:255',
+            'fecha_inicio' => 'required|date',
+            'fecha_termino' => 'required|date',
+            'descripcion' => 'required|min:5',
+            'prioridad' => 'required|int|min:1|max:3',
+        ]);
+
         //
         // dd($request->all());
         // dd($request->input('nombre'));
@@ -111,5 +119,7 @@ class TareaController extends Controller
     public function destroy(Tarea $tarea)
     {
         //
+        $tarea->delete();
+        return redirect()->route('tarea.index');
     }
 }
