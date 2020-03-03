@@ -14,12 +14,10 @@
                     </ul>
                 </div>
             @endif
-    <div class="alert alert-danger">
                 <div class="card-header">Nueva Tarea</div>
                 <div class="card-body">
-                    <!-- <form action="{{action('TareaController@store')}}" method="POST"> -->
                     @isset($tarea)
-                    {!! Form::model($user, ['route' => ['tarea.update', $tarea->id], 'method' => 'PATCH']) !!}
+                    {!! Form::model($tarea, ['route' => ['tarea.update', $tarea->id], 'method' => 'PATCH']) !!}
                         {{-- <form action="{{route('tarea.update',$tarea)}}" method="POST">
                             @method('PATCH') --}}
                     @else
@@ -84,7 +82,7 @@
                             <div class="col-md-6 offset-md-4">
                             
                                 <button type="submit" class="btn {{isset($tarea) && $tarea != null ? 'btn-primary' : 'btn-success'}}" >
-                                    {{ __('Crear Tarea') }}
+                                    {{ __('Guardar Tarea') }}
                                     {{-- {{isset($tarea) && $tarea != null ? 'Actualizar Tarea' : ''Crear Tarea''}} --}}
                                 </button>
 

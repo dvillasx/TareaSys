@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
@@ -53,6 +59,7 @@ class TareaController extends Controller
         // dd($request->descripcion);
 
         $tarea = new Tarea();
+        $tarea->user_id = \Auth::id();
         //Atributos....
         $tarea->nombre_tarea = $request->nombre_tarea;
         $tarea->fecha_inicio = $request->fecha_inicio;
