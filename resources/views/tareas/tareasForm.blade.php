@@ -78,6 +78,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="categoria" class="col-md-4 col-form-label text-md-right">{{ __('Categoria') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="categoria">Opciones</label>
+                                    </div>
+                                    {!! Form::select('categoria', $categorias, null, ['class' => 'custom-select']); !!}
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                             

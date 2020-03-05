@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Descripción Tarea {{$tarea->id}} {{$tarea->estatus}}</div>
+                <div class="card-header">{{$tarea->user->name}}: Descripción Tarea {{$tarea->id}} {{$tarea->estatus}}</div>
                 <div class="card-body">
                         @csrf
                         <div class="form-group row">
@@ -52,6 +52,13 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="categoria" class="col-md-4 col-form-label text-md-right">{{ __('Categoria') }}</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="categoria" value="{{$tarea->categoria->nombre_categoria}}" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="estatus" class="col-md-4 col-form-label text-md-right">{{ __('Estatus') }}</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="estatus" value="{{$tarea->estatus}}" disabled>
@@ -69,8 +76,6 @@
                                 <a href="{{action('TareaController@index')}}" class="btn btn-link">
                                     Listado
                                 </a>
-                            
-                    
                             </div>
                         </div>
          

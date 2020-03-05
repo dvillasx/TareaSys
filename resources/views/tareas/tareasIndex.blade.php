@@ -13,6 +13,7 @@
                                 <th scope="col">#ID</th>
                                 <th scope="col">Nombre Tarea</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Fecha Inicio</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,6 +26,7 @@
                                     </a>
                                 </td>
                                 <td>{{$tarea->descripcion}}</td>
+                                <td>{{$tarea->fecha_inicio->format('d/m/y')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
