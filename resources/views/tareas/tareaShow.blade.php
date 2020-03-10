@@ -26,14 +26,14 @@
                             <label  class="col-md-4 col-form-label text-md-right">{{ __('Fecha Inicio') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="fecha_inicio" value="{{$tarea->fecha_inicio}}" disabled>
+                                <input type="text" class="form-control" name="fecha_inicio" value="{{$tarea->fecha_inicio->format('d/m/y')}}" disabled>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label  class="col-md-4 col-form-label text-md-right">{{ __('Fecha Termino') }}</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="fecha_termino" value="{{$tarea->fecha_termino}}" disabled>
+                                <input type="text" class="form-control" name="fecha_termino" value="{{$tarea->fecha_termino->format('d/m/y')}}" disabled>
                             </div>
                         </div>
 

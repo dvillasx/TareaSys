@@ -39,7 +39,7 @@
 
                             <div class="col-md-6">
                                 {{-- <input type="date" class="form-control" name="fecha_inicio" value="{{$tarea->fecha_inicio ?? null}}"> --}}
-                                {!! Form::date('fecha_inicio', null, ['class' => 'form-control']); !!}
+                                {!! Form::date('fecha_inicio', isset($tarea) ? $tarea->fecha_inicio->toDateString() : null, ['class' => 'form-control']); !!}
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                             <label  class="col-md-4 col-form-label text-md-right">{{ __('Fecha Termino') }}</label>
                             <div class="col-md-6">
                                 {{-- <input type="date" class="form-control" name="fecha_termino" value="{{$tarea->fecha_termino ?? null}}"> --}}
-                                {!! Form::date('fecha_termino', null, ['class' => 'form-control']); !!}
+                                {!! Form::date('fecha_termino', isset($tarea) ? $tarea->fecha_termino->toDateString() : null, ['class' => 'form-control']); !!}
                             </div>
                         </div>
 
@@ -79,13 +79,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="categoria" class="col-md-4 col-form-label text-md-right">{{ __('Categoria') }}</label>
+                            <label for="categoria_id" class="col-md-4 col-form-label text-md-right">{{ __('Categoria') }}</label>
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="categoria">Opciones</label>
+                                        <label class="input-group-text" for="categoria_id">Opciones</label>
                                     </div>
-                                    {!! Form::select('categoria', $categorias, null, ['class' => 'custom-select']); !!}
+                                    {!! Form::select('categoria_id', $categorias, null, ['class' => 'custom-select']); !!}
                                 </div>
                             </div>
                         </div>

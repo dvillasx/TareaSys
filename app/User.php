@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function tareas(){
         return $this->hasMany(Tarea::class);
     }
+
+    public function equipos(){
+        return $this->belongsToMany(Equipo::class);
+    }
 }

@@ -30,3 +30,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('tarea','TareaController')->middleware('auth');
 
+Route::resource('equipo','EquipoController');
+

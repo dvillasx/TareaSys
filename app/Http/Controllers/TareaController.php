@@ -60,18 +60,23 @@ class TareaController extends Controller
         // dd($request->input('nombre'));
         // dd($request->descripcion);
 
-        $tarea = new Tarea();
-        $tarea->user_id = \Auth::id();
-        //Atributos....
-        $tarea->categoria_id = $request->categoria;
-        //
-        $tarea->nombre_tarea = $request->nombre_tarea;
-        $tarea->fecha_inicio = $request->fecha_inicio;
-        $tarea->fecha_termino = $request->fecha_termino;
-        $tarea->descripcion = $request->descripcion;
-        $tarea->prioridad = $request->prioridad;
+        // $tarea = new Tarea();
+        // $tarea->user_id = \Auth::id();
+        // //Atributos....
+        // $tarea->categoria_id = $request->categoria;
+        // //
+        // $tarea->nombre_tarea = $request->nombre_tarea;
+        // $tarea->fecha_inicio = $request->fecha_inicio;
+        // $tarea->fecha_termino = $request->fecha_termino;
+        // $tarea->descripcion = $request->descripcion;
+        // $tarea->prioridad = $request->prioridad;
+        
 
-        $tarea->save();
+        $request->merge(['user_id' => \Auth::id()]);
+        // $request->merge(['categoria_id' => $request->categoria]);
+        Tarea::create($request->all());
+
+        // $tarea->save();
         // dd($tarea);
         // return 'DATOS RECIBIDOS';
         return redirect()->route('tarea.index');
@@ -111,14 +116,26 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
-        //
-        $tarea->nombre_tarea = $request->nombre_tarea;
-        $tarea->fecha_inicio = $request->fecha_inicio;
-        $tarea->fecha_termino = $request->fecha_termino;
-        $tarea->descripcion = $request->descripcion;
-        $tarea->prioridad = $request->prioridad;
 
-        $tarea->save();
+        $request->validate([
+            'nombre_tarea' => 'required|max:255',
+            'fecha_inicio' => 'required|date',
+            'fecha_termino' => 'required|date',
+            'descripcion' => 'required|min:5',
+            'prioridad' => 'required|int|min:1|max:3',
+        ]);
+
+        //
+        // $tarea->nombre_tarea = $request->nombre_tarea;
+        // $tarea->fecha_inicio = $request->fecha_inicio;
+        // $tarea->fecha_termino = $request->fecha_termino;
+        // $tarea->descripcion = $request->descripcion;
+        // $tarea->prioridad = $request->prioridad;
+
+        // $tarea->save();
+
+
+        Tarea::where('id', $tarea->id)->update($request->except('_token','_method'));
         return redirect()->route('tarea.show',$tarea->id);
     }
 
