@@ -12,22 +12,30 @@
                             <tr>
                                 <th scope="col">#ID</th>
                                 <th scope="col">Nombre Equipo</th>
-                                <th scope="col">Usuario</th>
+                                <th scope="col">Usuarios</th>
+                                <th scope="col">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($equipos as $equipo)
                             <tr>
                                 <th scope="row">{{$equipo->id}}</th>
-                                <td>
-                                    <a href="{{route('equipo.edit',$equipo->id)}}">
-                                    {{$equipo->nombre_equipo}}
-                                    </a>
-                                </td>
+                              
+                                    <th scope="row"> {{$equipo->nombre_equipo}}</th>
+                                
+                               
                                 <td>
                                     @foreach($equipo->users as $user)
                                         {{$user->name}} <br>
                                     @endforeach
+                                </td>
+                                <td>
+                                    <a href="{{route('equipo.edit',$equipo->id)}}">
+                                        <button class="btn btn-warning" href="{{route('equipo.edit',$equipo->id)}}">
+                                            Editar
+                                        </button>
+                                        </a>
+                                    
                                 </td>
                             </tr>
                             @endforeach

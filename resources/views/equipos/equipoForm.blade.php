@@ -27,7 +27,7 @@
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="user_id">Usuarios</label>
                                     </div>
-                                    {!! Form::select('user_id[]', $users, null, ['class' => 'custom-select']); !!}
+                                    {!! Form::select('user_id[]', $users, isset($equipo) ? $equipo->users()->pluck('id'): null, ['class' => 'custom-select', 'multiple']); !!}
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                             
-                                <button type="submit" class="btn {{isset($tarea) && $tarea != null ? 'btn-primary' : 'btn-success'}}" >
+                                <button type="submit" class="btn {{isset($equipos) && $equipos != null ? 'btn-primary' : 'btn-success'}}" >
                                     {{ __('Guardar') }}
                                 </button>
 

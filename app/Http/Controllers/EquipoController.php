@@ -81,7 +81,8 @@ class EquipoController extends Controller
 
 
         //Relaciona Equipo con usuarios
-        $equipo->users()->attach($request->user_id);
+        $equipo->users()->sync($request->user_id);
+        // $equipo->users()->attach($request->user_id);
 
         return redirect()->route('equipo.index');
 
