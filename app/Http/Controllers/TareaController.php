@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth')->except('index');;
@@ -18,13 +18,13 @@ class TareaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
         //
         $tareas = Tarea::all();
         // dd($tareas);
-        return view('tareas.tareasIndex',compact('tareas'));
+        return view('tareas.tareasIndex', compact('tareas'));
     }
 
     /**
@@ -35,8 +35,8 @@ class TareaController extends Controller
     public function create()
     {
         //
-        $categorias = Categoria::all()->pluck('nombre_categoria','id');
-        return view('tareas.tareasForm',compact('categorias'));
+        $categorias = Categoria::all()->pluck('nombre_categoria', 'id');
+        return view('tareas.tareasForm', compact('categorias'));
     }
 
     /**
@@ -70,7 +70,7 @@ class TareaController extends Controller
         // $tarea->fecha_termino = $request->fecha_termino;
         // $tarea->descripcion = $request->descripcion;
         // $tarea->prioridad = $request->prioridad;
-        
+
 
         $request->merge(['user_id' => \Auth::id()]);
         // $request->merge(['categoria_id' => $request->categoria]);
@@ -91,7 +91,7 @@ class TareaController extends Controller
     public function show(Tarea $tarea)
     {
         //
-        return view('tareas.tareaShow',compact('tarea'));
+        return view('tareas.tareaShow', compact('tarea'));
     }
 
     /**
@@ -103,8 +103,8 @@ class TareaController extends Controller
     public function edit(Tarea $tarea)
     {
         //
-        $categorias = Categoria::all()->pluck('nombre_categoria','id');
-        return view('tareas.tareasForm',compact('tarea','categorias'));
+        $categorias = Categoria::all()->pluck('nombre_categoria', 'id');
+        return view('tareas.tareasForm', compact('tarea', 'categorias'));
     }
 
     /**
@@ -135,8 +135,8 @@ class TareaController extends Controller
         // $tarea->save();
 
 
-        Tarea::where('id', $tarea->id)->update($request->except('_token','_method'));
-        return redirect()->route('tarea.show',$tarea->id);
+        Tarea::where('id', $tarea->id)->update($request->except('_token', '_method'));
+        return redirect()->route('tarea.show', $tarea->id);
     }
 
     /**
@@ -148,7 +148,10 @@ class TareaController extends Controller
     public function destroy(Tarea $tarea)
     {
         //
-        $tarea->delete();
+        if (\Gate::allows('administrador', $tarea)) {
+            $tarea->delete();
+        }
+        // $tarea->delete();
         return redirect()->route('tarea.index');
     }
 }
