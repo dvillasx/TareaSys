@@ -18,6 +18,8 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  {{-- @stack('css') --}}
+
 </head>
 
 <body id="page-top">
@@ -87,14 +89,13 @@
             <!-- Nav Item - User Information -->
             @include('layouts.user-menu')
         <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
+        
         <div class="container-fluid">
+          @include('layouts.mensaje')
 
           @yield('content')
-        
-          <!-- Page Heading -->
-          
+        </div>
+       
 
         </div>
         <!-- /.container-fluid -->
@@ -151,6 +152,8 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+  {{-- @stack('js') --}}
 
 </body>
 

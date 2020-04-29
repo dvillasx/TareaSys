@@ -26,6 +26,9 @@ class CreateTareasTable extends Migration
             $table->string('estatus')->default('Por Hacer');
             $table->boolean('terminada')->default(0);
             $table->timestamps();
+
+            //Mantener la intregidad de la base de datoso|ondelete borra todo lo que este relacionado al el
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -22,7 +22,11 @@ class TareaController extends Controller
     public function index()
     {
         //
-        $tareas = Tarea::all();
+        // $tareas = Tarea::all();
+        // $tareas = Tarea::with('user')->with('categoria')->get();
+        //Me falta poner en la view la categoria en la lista
+        $tareas = Tarea::with('user:id,name,email', 'categoria')->get();
+        // $tareas = Tarea::with('user:id,name,email', 'categoria')->paginate(1);
         // dd($tareas);
         return view('tareas.tareasIndex', compact('tareas'));
     }
@@ -79,7 +83,11 @@ class TareaController extends Controller
         // $tarea->save();
         // dd($tarea);
         // return 'DATOS RECIBIDOS';
-        return redirect()->route('tarea.index');
+        return redirect()->route('tarea.index')
+            ->with([
+                'mensaje' => 'Tarea creada con exito',
+                'clase-alerta' => 'alert-success'
+            ]);
     }
 
     /**
@@ -152,6 +160,9 @@ class TareaController extends Controller
             $tarea->delete();
         }
         // $tarea->delete();
-        return redirect()->route('tarea.index');
+        return redirect()->route('tarea.index')->with([
+            'mensaje' => 'Tarea eliminada con exito',
+            'clase-alerta' => 'alert-warning'
+        ]);
     }
 }

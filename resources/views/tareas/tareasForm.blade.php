@@ -14,6 +14,7 @@
                     </ul>
                 </div>
             @endif
+            
                 <div class="card-header">Nueva Tarea</div>
                 <div class="card-body">
                     @isset($tarea)
@@ -110,3 +111,13 @@
             </div>
         </div>
         @endsection
+
+        {{-- @push('js')
+            <script>
+                // $(document).ready(function(){
+                //             $("p").click(function(){
+                //                 $(this).hide();
+                //             });
+                //             });
+            </script>
+        @endpush --}}

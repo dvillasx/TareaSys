@@ -16,6 +16,9 @@ class CreateEquipoUserTable extends Migration
         Schema::create('equipo_user', function (Blueprint $table) {
             $table->unsignedBigInteger('equipo_id');
             $table->unsignedBigInteger('user_id');
+
+            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

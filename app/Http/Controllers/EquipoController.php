@@ -16,7 +16,20 @@ class EquipoController extends Controller
     public function index()
     {
         //
-        $equipos = Equipo::all();
+        // $equipos = Equipo::with('users')->get();
+        // Ejemplo para hacer consulta
+        $equipos = Equipo::with(['users' => function ($query) {
+            $query->where('name', '!=', 'Damian');
+        }])
+            //Has para hacer consulta por si tiene datos
+            // ->has('users')
+            //Consultas mas elaboradas
+            // ->whereHas('users', function ($query) {
+            //     $query->where('name', 'Damian');
+            // })
+            ->get();
+
+
         return view('equipos.equipoIndex', compact('equipos'));
     }
 
@@ -61,9 +74,8 @@ class EquipoController extends Controller
     public function edit(Equipo $equipo)
     {
         //
-        $users = User::all()->pluck('name','id');
-        return view('equipos.equipoForm', compact('equipo','users'));
-
+        $users = User::all()->pluck('name', 'id');
+        return view('equipos.equipoForm', compact('equipo', 'users'));
     }
 
     /**
@@ -85,9 +97,6 @@ class EquipoController extends Controller
         // $equipo->users()->attach($request->user_id);
 
         return redirect()->route('equipo.index');
-
-
-
     }
 
     /**
